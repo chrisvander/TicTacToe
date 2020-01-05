@@ -23,14 +23,24 @@ private:
   vector<int> board;
   Player *player1, *player2;
 public:
-  Board() {
+  void initBoard() {
     for (int i=0; i<BOARDSIZE; i++)
       board.push_back(0);
+  }
+
+  Board() {
+    initBoard();
   }
 
   Board(Board& b) {
     for (int i=0; i<BOARDSIZE; i++)
       board.push_back(b.board[i]);
+  }
+
+  Board(Player player1, Player player2) {
+    player1 = _player1;
+    player2 = _player2;
+    initBoard();
   }
 
   vector<int> getBoard() {
@@ -96,7 +106,7 @@ int main() {
     player2 = new User();
   }
 
-  Board main;
+  Board main(player1, player2);
   main.print();
 
   delete player1;
